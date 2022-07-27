@@ -1,0 +1,45 @@
+﻿@model IEnumerable<Product>
+
+<h2>Search Results</h2>
+<br />
+
+<table class="table table-bordered">
+    <thead class="thead-dark">
+        <tr class="text-center">
+            <th>UPC/PLU</th>
+            <th>Name</th>
+            <th>Warehouse Code</th>
+            <th>Price</th>
+            <th>Sale Price</th>
+            <th>On Sale</th>
+            <th>Units/Case</th>
+            <th>Case Cost</th>
+            <th>Profit</th>
+            <th>Department</th>
+            <th>Like Code</th>
+            <th>Stock Level</th>
+        </tr>
+    </thead>
+
+    @foreach (var product in Model)
+    {
+        <tr class="text-center">
+            <td><a href=/Product/ViewProduct/@product.UPCPLU>@product.UPCPLU</a></td>
+            <td><a href=/Product/ViewProduct/@product.UPCPLU>@product.ProductName</a></td>
+            <td>@product.WarehouseCode</td>
+            <td>$@product.Price.ToString("N")</td>
+            @*<td>@(product.Price < 1) ? $"{product.Price.ToString("N")}¢" : $"{product.Price.ToString("N")}"</td>*@
+            <td></td>
+            <td>$@product.SalePrice.ToString("N")</td>
+            @*<td>@product.OnSale</td>*@
+            <td></td>
+            <td>@product.OnSale.ToYesNoString()</td>
+            <td>@product.UnitsPerCase</td>
+            <td>$@product.CaseCost.ToString("N")</td>
+            <td>Profit</td>
+            @*<td>@product.DeptName</td>*@
+            <td>@product.LikeCodeID</td>
+            <td>@product.CurrentInventory</td>
+        </tr>
+    }
+</table>

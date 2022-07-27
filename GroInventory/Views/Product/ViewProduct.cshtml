@@ -1,0 +1,55 @@
+﻿@model Product
+
+<h3>@Model.ProductName Information</h3>
+
+<table class="table table-bordered">
+    <thead class="thead-dark">
+        <tr class="text-center">
+            <th>UPC/PLU</th>
+            <th>Name</th>
+            <th>Warehouse Code</th>
+            <th>Price</th>
+            <th>Sale Price</th>
+            <th>On Sale</th>
+            <th>Units/Case</th>
+            <th>Case Cost</th>
+            <th>Profit</th>
+            <th>Department</th>
+            <th>Like Code</th>
+            <th>Stock Level</th>
+        </tr>
+    </thead>
+    <tr class="text-center">
+        <td>@Model.UPCPLU</td>
+        <td>@Model.ProductName</td>
+        <td>@Model.WarehouseCode</td>
+        <td>@Model.ConvertedPrice</td>
+        <td>@Model.ConvertedSalePrice</td>
+        <td>@Model.OnSale.ToYesNoString()</td>
+        <td>@Model.UnitsPerCase</td>
+        <td>@Model.ConvertedCaseCost</td>
+        <td>Profit</td>
+        @*<td>@Model.DeptName</td>*@
+        <td>Department Name</td>
+        <td>@Model.LikeCodeID</td>
+        <td>@Model.CurrentInventory</td>
+    </tr>
+</table>
+
+<br>
+
+<div>
+    <button type="button" class="btn btn-primary">
+        <a class="text-light" href="/Product/UpdateProduct/@Model.UPCPLU">Update this Product</a>
+    </button>
+</div>
+
+<br>
+
+<div style="display: block">
+    @using (Html.BeginForm("DeleteProduct", "Product", "Post"))
+    {
+        <input type="hidden" asp-for="UPCPLU" value="@Model.UPCPLU" />
+        <input type="submit" onclick="return confirm('Are you sure?')" value="Delete this product" class="btn btn-danger" />
+    }
+</div>

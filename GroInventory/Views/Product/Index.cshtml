@@ -1,0 +1,78 @@
+﻿@model IEnumerable<Product>
+
+<h2>Products</h2>
+
+
+<table class="container-fluid">
+    <tr>
+        <td>
+            @using (Html.BeginForm("Search", "Product", FormMethod.Get))
+            {
+                <p>
+                    Search by Name or UPC:<br>
+                    @Html.TextBox("searchString")
+                    <input type="submit" value="Search" />
+                </p>
+            }
+        </td>
+        @*<td> !!Discontinued this due to combining into one Search Bar
+                @using (Html.BeginForm("SearchUPC", "Product", FormMethod.Get))
+                {
+                    <p>
+                        Search by UPC:<br>
+                        @Html.TextBox("searchString")
+                        <input type="submit" value="Search" />
+                    </p>
+                }
+            </td>*@
+    </tr>
+    <tr>
+        <td>
+            <button type="button" class="btn btn-primary">
+                <a class="text-light" href="/Product/InsertProduct/">Create a New Product</a>
+            </button>
+        </td>
+    </tr>
+</table>
+
+
+<br>
+
+<table class="table table-bordered table-hover">
+    <thead class="thead-dark">
+        <tr class="text-center">
+            <th>UPC/PLU</th>
+            <th>Name</th>
+            <th>Warehouse Code</th>
+            <th>Price</th>
+            <th>Sale Price</th>
+            <th>On Sale</th>
+            <th>Units/Case</th>
+            <th>Case Cost</th>
+            <th>Profit</th>
+            <th>Department</th>
+            <th>Like Code</th>
+            <th>Stock Level</th>
+        </tr>
+    </thead>
+
+    @foreach (var product in Model)
+    {
+        <tr class="text-center">
+            <td><a href=/Product/ViewProduct/@product.UPCPLU>@product.UPCPLU</a></td>
+            <td><a href=/Product/ViewProduct/@product.UPCPLU>@product.ProductName</a></td>
+            <td>@product.WarehouseCode</td>
+            <td>@product.ConvertedPrice</td>
+            <td>@product.ConvertedSalePrice</td>
+            <td>@product.OnSale.ToYesNoString()</td>
+            <td>@product.UnitsPerCase</td>
+            <td>@product.ConvertedCaseCost</td>
+            <td>Profit</td>
+            @*<td>@product.DeptName</td>*@
+            <td></td>
+            <td>@product.LikeCodeID</td>
+            <td>@product.CurrentInventory</td>
+        </tr>
+
+    }
+</table>
