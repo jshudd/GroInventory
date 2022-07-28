@@ -51,11 +51,12 @@ namespace GroInventory
             //        currentinventory = product.CurrentInventory,
             //        upc = product.UPC });
 
-            _conn.Execute("UPDATE hudds.products SET ProductName = @name, WarehouseCode = @warehousecode, Price = @price, SalePrice = @saleprice, OnSale = @onsale, UnitsPerCase = @unitspercase, CaseCost = @casecost, CurrentInventory = @currentinventory WHERE UPCPLU = @upcplu;",
+            _conn.Execute("UPDATE hudds.products SET ProductName = @name, WarehouseCode = @warehousecode, DeptID = @deptID, Price = @price, SalePrice = @saleprice, OnSale = @onsale, UnitsPerCase = @unitspercase, CaseCost = @casecost, CurrentInventory = @currentinventory WHERE UPCPLU = @upcplu;",
                 new
                 {
                     name = product.ProductName,
                     warehousecode = product.WarehouseCode,
+                    deptID = product.DeptID,
                     price = product.Price,
                     saleprice = product.SalePrice,
                     onsale = product.OnSale,
@@ -89,7 +90,7 @@ namespace GroInventory
             return _conn.Query<Department>("SELECT * FROM departments;");
         }
 
-        public Product AssignDepartment()
+        public Product AssignDepartmentsList()
         {
             var deptList = GetDepartments();
             var product = new Product();
@@ -97,6 +98,12 @@ namespace GroInventory
 
             return product;
         }
+
+        //Not needed? Delete?
+        //public void AssignStaticDeptList()
+        //{
+        //    Department.DeptList = GetDepartments();
+        //}
 
         //Search Bar
         public IEnumerable<Product> SearchProduct(string search)

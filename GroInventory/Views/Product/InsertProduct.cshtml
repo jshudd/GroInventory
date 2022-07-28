@@ -46,11 +46,15 @@
     <br>
 
     <div class="form-group">
-        <label for="">Select a Department</label><span style="color:red">*</span>
+        <label asp-for="DeptID">Select a Department</label><span style="color:red">*</span>
         <select class="form-control" name="DeptID" value="">
-            @foreach (var dept in Model.Departments)
+            @foreach (var dept in Department.DeptList)
             {
-                <option value="@dept.DeptName"> @dept.DeptID @dept.DeptName</option>
+                //if gets rid of 0 No Dept option
+                @if (dept.DeptID > 0)
+                {
+                    <option value="@dept.DeptID"> @dept.DeptID @dept.DeptName</option>
+                }
             }
         </select>
     </div>

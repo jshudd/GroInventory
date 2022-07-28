@@ -44,13 +44,13 @@ namespace GroInventory.Models
             }
         }
 
-        //public string DeptName
-        //{
-        //    get
-        //    {
-        //        return Departments.ElementAt(DeptID - 1).ToString();
-        //    }
-        //}
+        public string DeptName
+        {
+            get
+            {
+                return Department.DeptList.ElementAt(DeptID).DeptName;
+            }
+        }
     }
 }
 
