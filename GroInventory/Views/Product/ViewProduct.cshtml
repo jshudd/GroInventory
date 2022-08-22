@@ -8,7 +8,8 @@
             <th>UPC/PLU</th>
             <th>Name</th>
             <th>Warehouse Code</th>
-            <th>Price</th>
+            <th>Current Price</th>
+            <th>Regular Price</th>
             <th>Sale Price</th>
             <th>On Sale</th>
             <th>Units/Case</th>
@@ -23,6 +24,7 @@
         <td>@Model.UPCPLU</td>
         <td>@Model.ProductName</td>
         <td>@Model.WarehouseCode</td>
+        <td>@((Model.OnSale) ? Model.ConvertedSalePrice : Model.ConvertedPrice)</td>
         <td>@Model.ConvertedPrice</td>
         <td>@Model.ConvertedSalePrice</td>
         <td>@Model.OnSale.ToYesNoString()</td>
