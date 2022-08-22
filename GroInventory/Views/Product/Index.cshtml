@@ -51,7 +51,7 @@
             <th>On Sale</th>
             <th>Units/Case</th>
             <th>Case Cost</th>
-            <th>Profit</th>
+            <th>Profit/Unit</th>
             <th>Like Code</th>
             <th>Stock Level</th>
         </tr>
@@ -64,13 +64,13 @@
             <td><a href=/Product/ViewProduct/@product.UPCPLU>@product.ProductName</a></td>
             <td>@product.WarehouseCode</td>
             <td>@product.DeptName</td>
-            <td>@((product.OnSale) ? product.ConvertedSalePrice : product.ConvertedPrice)</td>
+            <td>@product.ConvertedCurrentPrice</td>
             <td>@product.ConvertedPrice</td>
             <td>@product.ConvertedSalePrice</td>
             <td>@product.OnSale.ToYesNoString()</td>
             <td>@product.UnitsPerCase</td>
             <td>@product.ConvertedCaseCost</td>
-            <td>Profit</td>
+            <td>@product.ConvertedProfit</td>
             <td>@product.LikeCodeID</td>
             <td>@product.CurrentInventory</td>
         </tr>
