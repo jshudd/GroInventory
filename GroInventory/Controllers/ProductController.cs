@@ -23,6 +23,8 @@ namespace GroInventory.Controllers
         {
             var products = repo.GetAllProducts();
 
+            Department.DeptList = repo.GetDepartments();
+
             return View(products);
         }
 
@@ -61,7 +63,7 @@ namespace GroInventory.Controllers
 
         public IActionResult InsertProduct()
         {
-            var prod = repo.AssignDepartment();
+            var prod = repo.AssignDepartmentsList();
 
             return View(prod);
         }

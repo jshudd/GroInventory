@@ -11,7 +11,8 @@ namespace GroInventory
         public void UpdateProduct(Product product);
         public void InsertProduct(Product productToInsert);
         public IEnumerable<Department> GetDepartments();
-        public Product AssignDepartment();
+        public Product AssignDepartmentsList();
+        //public void AssignStaticDeptList();
         public void DeleteProduct(Product product);
         //Search Bar below
         public IEnumerable<Product> SearchProduct(string search);
