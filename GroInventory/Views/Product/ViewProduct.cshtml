@@ -24,7 +24,7 @@
         <td>@Model.UPCPLU</td>
         <td>@Model.ProductName</td>
         <td>@Model.WarehouseCode</td>
-        <td>@Model.ConvertedCurrentPrice</td>
+        <td>@Model.ConvertedCurrentPrice @Model.PerPound.ToUnitsOrLb()</td>
         <td>@Model.ConvertedPrice</td>
         <td>@Model.ConvertedSalePrice</td>
         <td>@Model.OnSale.ToYesNoString()</td>

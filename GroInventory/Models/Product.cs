@@ -17,6 +17,7 @@ namespace GroInventory.Models
         public double Price { get; set; }
         public double SalePrice { get; set; }
         public bool OnSale { get; set; }
+        public bool PerPound { get; set; } = false;
         public double CaseCost { get; set; }
         public string LikeCodeID { get; set; }
         public int UnitsPerCase { get; set; }
@@ -61,7 +62,7 @@ namespace GroInventory.Models
         {
             get
             {
-                return (this.Profit < 1 && this.Profit > 0) ? Math.Round((this.Profit * 100), 2) + "¢" : "$" + Math.Round(this.Profit, 2).ToString("N");
+                return (this.Profit < 1 && this.Profit > 0) ? Math.Round((this.Profit * 100), 0) + "¢" : "$" + Math.Round(this.Profit, 2).ToString("N");
             }
         }
 

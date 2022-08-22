@@ -51,7 +51,7 @@ namespace GroInventory
             //        currentinventory = product.CurrentInventory,
             //        upc = product.UPC });
 
-            _conn.Execute("UPDATE hudds.products SET ProductName = @name, WarehouseCode = @warehousecode, DeptID = @deptID, Price = @price, SalePrice = @saleprice, OnSale = @onsale, UnitsPerCase = @unitspercase, CaseCost = @casecost, CurrentInventory = @currentinventory WHERE UPCPLU = @upcplu;",
+            _conn.Execute("UPDATE hudds.products SET ProductName = @name, WarehouseCode = @warehousecode, DeptID = @deptID, Price = @price, SalePrice = @saleprice, OnSale = @onsale, UnitsPerCase = @unitspercase, CaseCost = @casecost, CurrentInventory = @currentinventory, PerPound = @perpound WHERE UPCPLU = @upcplu;",
                 new
                 {
                     name = product.ProductName,
@@ -63,13 +63,14 @@ namespace GroInventory
                     unitspercase = product.UnitsPerCase,
                     casecost = product.CaseCost,
                     currentinventory = product.CurrentInventory,
-                    upcplu = product.UPCPLU
+                    upcplu = product.UPCPLU,
+                    perpound = product.PerPound
                 });
         }
 
         public void InsertProduct(Product productToInsert)
         {
-            _conn.Execute("INSERT INTO products (UPCPLU, PRODUCTNAME, WAREHOUSECODE, PRICE, SALEPRICE, ONSALE, UNITSPERCASE, CASECOST, DEPTID, CURRENTINVENTORY) VALUES (@upcplu, @name, @warehousecode, @price, @saleprice, @onsale, @unitspercase, @casecost, @deptid, @currentinventory);",
+            _conn.Execute("INSERT INTO products (UPCPLU, PRODUCTNAME, WAREHOUSECODE, PRICE, SALEPRICE, ONSALE, UNITSPERCASE, CASECOST, DEPTID, CURRENTINVENTORY,PERPOUND) VALUES (@upcplu, @name, @warehousecode, @price, @saleprice, @onsale, @unitspercase, @casecost, @deptid, @currentinventory, @perpound);",
                 new
                 {
                     upcplu = productToInsert.UPCPLU,
@@ -81,7 +82,8 @@ namespace GroInventory
                     unitspercase = productToInsert.UnitsPerCase,
                     casecost = productToInsert.CaseCost,
                     deptid = productToInsert.DeptID,
-                    currentinventory = productToInsert.CurrentInventory
+                    currentinventory = productToInsert.CurrentInventory,
+                    perpound = productToInsert.PerPound
                 });
         }
 

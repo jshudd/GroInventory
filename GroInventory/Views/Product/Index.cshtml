@@ -64,7 +64,7 @@
             <td><a href=/Product/ViewProduct/@product.UPCPLU>@product.ProductName</a></td>
             <td>@product.WarehouseCode</td>
             <td>@product.DeptName</td>
-            <td>@product.ConvertedCurrentPrice</td>
+            <td>@product.ConvertedCurrentPrice @product.PerPound.ToUnitsOrLb()</td>
             <td>@product.ConvertedPrice</td>
             <td>@product.ConvertedSalePrice</td>
             <td>@product.OnSale.ToYesNoString()</td>

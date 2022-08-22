@@ -16,6 +16,19 @@
 
     <label asp-for="Price" class="control-label">Price</label>
     <input type="number" step="0.01" name="Price" class="form-control" value="@Model.Price" />
+
+    @if (Model.PerPound)
+    {
+        <label asp-for="PerPound" class="control-label">Per Pound?</label>
+        <input type="checkbox" name="PerPound" id="PerPound" value="true" checked />
+    }
+    else
+    {
+        <label asp-for="PerPound" class="control-label">Per Pound?</label>
+        <input type="checkbox" name="PerPound" id="PerPound" value="true" />
+    }
+
+    <br>
     <br>
 
     <label asp-for="SalePrice" class="control-label">Sale Price</label>
