@@ -101,11 +101,10 @@ namespace GroInventory
             return product;
         }
 
-        //Not needed? Delete?
-        //public void AssignStaticDeptList()
-        //{
-        //    Department.DeptList = GetDepartments();
-        //}
+        public void AssignLikeCodeList(Product product)
+        {            
+            product.LikeCodes = GetLikeCodes();
+        }
 
         //Search Bar
         public IEnumerable<Product> SearchProduct(string search)
@@ -114,10 +113,9 @@ namespace GroInventory
                 new { name = "%" + search + "%", upcplu = "%" + search + "%" });
         }
 
-        //public IEnumerable<Product> SearchUPC(string search)
-        //{
-        //    return _conn.Query<Product>("SELECT * FROM products WHERE upc LIKE @upc;",
-        //        new { upc = "%" + search + "%" });
-        //}        
+        public IEnumerable<LikeCode> GetLikeCodes()
+        {
+            return _conn.Query<LikeCode>("SELECT * FROM likeCodes;");
+        }   
     }
 }

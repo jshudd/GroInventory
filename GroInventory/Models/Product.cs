@@ -10,19 +10,20 @@ namespace GroInventory.Models
         {
         }
 
-        public int UPCPLU { get; set; }
+        public long UPCPLU { get; set; }
         public string ProductName { get; set; }
-        public int WarehouseCode { get; set; }
+        public long WarehouseCode { get; set; }
         public int DeptID { get; set; }
         public double Price { get; set; }
         public double SalePrice { get; set; }
         public bool OnSale { get; set; }
         public bool PerPound { get; set; } = false;
         public double CaseCost { get; set; }
-        public string LikeCodeID { get; set; }
+        public int LikeCodeID { get; set; }
         public int UnitsPerCase { get; set; }
         public double CurrentInventory { get; set; }
         public IEnumerable<Department> Departments { get; set; }
+        public IEnumerable<LikeCode> LikeCodes { get; set; }
         public double CurrentPrice
         {
             get
@@ -78,7 +79,15 @@ namespace GroInventory.Models
         {
             get
             {
-                return this.CurrentPrice - this.CaseCost / this.UnitsPerCase;
+                return ((this.CurrentPrice - (this.CaseCost/this.UnitsPerCase)) / (this.CaseCost/this.UnitsPerCase)) * 100;
+            }
+        }
+
+        public string LikeCodeName
+        {
+            get
+            {
+                return LikeCode.LikeCodeList.ElementAt(LikeCodeID - 1).LikeCodeName;
             }
         }
     }

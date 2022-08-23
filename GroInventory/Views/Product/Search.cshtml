@@ -9,14 +9,15 @@
             <th>UPC/PLU</th>
             <th>Name</th>
             <th>Warehouse Code</th>
-            <th>Price</th>
-            <th>Sale Price</th>
+            <th>Department</th>
+            <th>Current Price</th>
+            @*<th>Regular Price</th>
+            <th>Sale Price</th>*@
             <th>On Sale</th>
+            <th>Like Code</th>
             <th>Units/Case</th>
             <th>Case Cost</th>
-            <th>Profit</th>
-            <th>Department</th>
-            <th>Like Code</th>
+            <th>Profit/Unit</th>
             <th>Stock Level</th>
         </tr>
     </thead>
@@ -27,18 +28,15 @@
             <td><a href=/Product/ViewProduct/@product.UPCPLU>@product.UPCPLU</a></td>
             <td><a href=/Product/ViewProduct/@product.UPCPLU>@product.ProductName</a></td>
             <td>@product.WarehouseCode</td>
-            <td>$@product.Price.ToString("N")</td>
-            @*<td>@(product.Price < 1) ? $"{product.Price.ToString("N")}¢" : $"{product.Price.ToString("N")}"</td>*@
-            <td></td>
-            <td>$@product.SalePrice.ToString("N")</td>
-            @*<td>@product.OnSale</td>*@
-            <td></td>
+            <td>@product.DeptName</td>
+            <td>@product.ConvertedCurrentPrice @product.PerPound.ToUnitsOrLb()</td>
+            @*<td>@product.ConvertedPrice</td>
+        <td>@product.ConvertedSalePrice</td>*@
             <td>@product.OnSale.ToYesNoString()</td>
-            <td>@product.UnitsPerCase</td>
-            <td>$@product.CaseCost.ToString("N")</td>
-            <td>Profit</td>
-            @*<td>@product.DeptName</td>*@
             <td>@product.LikeCodeID</td>
+            <td>@product.UnitsPerCase</td>
+            <td>@product.ConvertedCaseCost</td>
+            <td>@Math.Round(product.Profit, 2)%</td>
             <td>@product.CurrentInventory</td>
         </tr>
     }

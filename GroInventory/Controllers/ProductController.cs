@@ -24,6 +24,7 @@ namespace GroInventory.Controllers
             var products = repo.GetAllProducts();
 
             Department.DeptList = repo.GetDepartments();
+            LikeCode.LikeCodeList = repo.GetLikeCodes();
 
             return View(products);
         }
@@ -31,6 +32,9 @@ namespace GroInventory.Controllers
         public IActionResult ViewProduct(int id)
         {
             var product = repo.GetProduct(id);
+
+            Department.DeptList = repo.GetDepartments();
+            LikeCode.LikeCodeList = repo.GetLikeCodes();
 
             return View(product);
         }
@@ -64,6 +68,7 @@ namespace GroInventory.Controllers
         public IActionResult InsertProduct()
         {
             var prod = repo.AssignDepartmentsList();
+            repo.AssignLikeCodeList(prod);
 
             return View(prod);
         }

@@ -12,11 +12,11 @@
             <th>Regular Price</th>
             <th>Sale Price</th>
             <th>On Sale</th>
+            <th>Like Code</th>
             <th>Units/Case</th>
             <th>Case Cost</th>
             <th>Profit/Unit</th>
             <th>Department</th>
-            <th>Like Code</th>
             <th>Stock Level</th>
         </tr>
     </thead>
@@ -28,11 +28,11 @@
         <td>@Model.ConvertedPrice</td>
         <td>@Model.ConvertedSalePrice</td>
         <td>@Model.OnSale.ToYesNoString()</td>
+        <td>@Model.LikeCodeID</td>
         <td>@Model.UnitsPerCase</td>
         <td>@Model.ConvertedCaseCost</td>
-        <td>@Model.ConvertedProfit</td>
+        <td>@Math.Round(Model.Profit, 2)%</td>
         <td>@Model.DeptName</td>
-        <td>@Model.LikeCodeID</td>
         <td>@Model.CurrentInventory</td>
     </tr>
 </table>
