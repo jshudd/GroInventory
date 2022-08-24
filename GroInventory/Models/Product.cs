@@ -71,7 +71,7 @@ namespace GroInventory.Models
         {
             get
             {
-                return Department.DeptList.ElementAt(DeptID).DeptName;
+                return Department.DeptList.ElementAt(DeptID - 1).DeptName;
             }
         }
 

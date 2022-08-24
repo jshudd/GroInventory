@@ -1,0 +1,101 @@
+﻿@model Department
+<h2>Update @Model.DeptName</h2>
+
+@using (Html.BeginForm("UpdateDeptToDatabase", "Department", "Post"))
+{
+    <input asp-for="DeptID" type="hidden" value="@Model.DeptID" />
+
+    <label asp-for="DeptName" class="control-label">Department Name</label>
+
+    <input type="text" name="DeptName" class="form-control" value="@Model.DeptName" />
+    @*<br>
+
+    <label asp-for="WarehouseCode" class="control-label">Warehouse Code</label>
+    <input type="text" name="WarehouseCode" class="form-control" value="@Model.WarehouseCode" />
+    <br>
+
+    <label asp-for="Price" class="control-label">Price</label>
+    <input type="number" step="0.01" name="Price" class="form-control" value="@Model.Price" />
+
+    @if (Model.PerPound)
+    {
+        <label asp-for="PerPound" class="control-label">Per Pound?</label>
+        <input type="checkbox" name="PerPound" id="PerPound" value="true" checked />
+    }
+    else
+    {
+        <label asp-for="PerPound" class="control-label">Per Pound?</label>
+        <input type="checkbox" name="PerPound" id="PerPound" value="true" />
+    }
+
+    <br>
+    <br>
+
+    <label asp-for="SalePrice" class="control-label">Sale Price</label>
+    <input type="number" step="0.01" name="SalePrice" class="form-control" value="@Model.SalePrice" />
+    <br>
+
+    <div class="form-group">
+        <label for="">On Sale?</label>
+        <select class="form-control" name="OnSale" value="@Model.OnSale">
+            @if (Model.OnSale)
+            {
+                <option value="true" selected>Yes</option>
+                <option value="false">No</option>
+            }
+            else
+            {
+                <option value="true">Yes</option>
+                <option value="false" selected>No</option>
+            }
+        </select>
+    </div>
+    <br>
+
+    <label asp-for="UnitsPerCase" class="control-label">Units/Case</label>
+    <input type="text" name="UnitsPerCase" class="form-control" value="@Model.UnitsPerCase" />
+    <br>
+
+    <label asp-for="CaseCost" class="control-label">Case Cost</label>
+    <input type="text" name="CaseCost" class="form-control" value="@Model.CaseCost" />
+    <br>
+
+    <div class="form-group">
+        <label asp-for="DeptID">Select a Department</label><span style="color:red">*</span>
+        <select class="form-control" name="DeptID" value="@Model.DeptName">
+            @foreach (var dept in Department.DeptList)
+            {
+                //if gets rid of 0 No Dept option
+                @if (dept.DeptID > 0)
+                {
+                    @if (Model.DeptID == dept.DeptID) //Makes current dept selected
+                    {
+                        <option value="@dept.DeptID" selected> @dept.DeptID @dept.DeptName</option>
+                    }
+                    else
+                    {
+                        <option value="@dept.DeptID"> @dept.DeptID @dept.DeptName</option>
+                    }
+
+                }
+            }
+        </select>
+    </div>
+    <br>
+
+    <label asp-for="CurrentInventory" class="control-label">Current Inventory</label>
+    <input type="text" name="CurrentInventory" class="form-control" value="@Model.CurrentInventory" />
+    <br>*@
+
+    @*<label asp-for="LikeCodeID" class="control-label">Like Code</label>
+        <input type="text" name="LikeCodeID" class="form-control" value="@Model.LikeCodeID" />
+        <br>*@
+
+    <br>
+
+    <input type="submit" value="Update Department" class="btn btn-primary" />
+
+    <button type="button" class="btn btn-warning">
+        <a class="text-light" href="/Department/ViewDepartment/@Model.DeptID">Cancel</a>
+    </button>
+}

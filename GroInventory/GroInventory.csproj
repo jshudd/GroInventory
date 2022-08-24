@@ -9,6 +9,7 @@
     <None Remove="MySql.Data" />
     <None Remove="Views\Product\" />
     <None Remove="img\" />
+    <None Remove="Views\Department\" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Dapper" Version="2.0.123" />
@@ -18,6 +19,7 @@
     <Folder Include="Views\Product\" />
     <Folder Include="img\" />
     <Folder Include="wwwroot\img\" />
+    <Folder Include="Views\Department\" />
   </ItemGroup>
   <ItemGroup>
     <Content Remove="wwwroot\img\apple.jpg" />

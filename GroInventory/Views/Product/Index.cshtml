@@ -2,7 +2,6 @@
 
 <h2>Products</h2>
 
-
 <table class="container-fluid">
     <tr>
         <td>
@@ -47,7 +46,7 @@
             <th>Department</th>
             <th>Current Price</th>
             @*<th>Regular Price</th>
-            <th>Sale Price</th>*@
+                <th>Sale Price</th>*@
             <th>On Sale</th>
             <th>Like Code</th>
             <th>Units/Case</th>
@@ -66,7 +65,7 @@
             <td>@product.DeptName</td>
             <td>@product.ConvertedCurrentPrice @product.PerPound.ToUnitsOrLb()</td>
             @*<td>@product.ConvertedPrice</td>
-        <td>@product.ConvertedSalePrice</td>*@
+            <td>@product.ConvertedSalePrice</td>*@
             <td>@product.OnSale.ToYesNoString()</td>
             <td>@product.LikeCodeName</td>
             <td>@product.UnitsPerCase</td>
@@ -74,6 +73,5 @@
             <td>@Math.Round(product.Profit, 2)%</td>
             <td>@product.CurrentInventory</td>
         </tr>
-
     }
 </table>

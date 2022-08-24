@@ -1,0 +1,34 @@
+﻿@model Department
+
+<h3>@Model.DeptName Information</h3>
+
+<table class="table table-bordered">
+    <thead class="thead-dark">
+        <tr class="text-center">
+            <th>Department ID</th>
+            <th>Department Name</th>
+        </tr>
+    </thead>
+    <tr class="text-center">
+        <td>@Model.DeptID</td>
+        <td>@Model.DeptName</td>
+    </tr>
+</table>
+
+<br>
+
+<div>
+    <button type="button" class="btn btn-primary">
+        <a class="text-light" href="/Department/UpdateDepartment/@Model.DeptID">Update this Department</a>
+    </button>
+</div>
+
+<br>
+
+<div style="display: block">
+    @using (Html.BeginForm("DeleteDept", "Department", "Post"))
+    {
+        <input type="hidden" asp-for="DeptID" value="@Model.DeptID" />
+        <input type="submit" onclick="return confirm('Are you sure?')" value="Delete this Department" class="btn btn-danger" />
+    }
+</div>

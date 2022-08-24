@@ -1,0 +1,76 @@
+﻿@model Department
+<h2>Create a New Department</h2>
+
+<p class="text-danger">
+    required *
+</p>
+<br />
+
+@using (Html.BeginForm("InsertDeptToDatabase", "Department", "Post"))
+{
+    @*<label asp-for="DeptID" class="control-label">UPC/PLU</label><span style="color:red">*</span>
+    <input type="text" name="UPCPLU" class="form-control" value="" />
+    <br>*@
+
+    <label asp-for="DeptName" class="control-label">Department Name</label><span style="color:red">*</span>
+    <input type="text" name="DeptName" class="form-control" value="" />
+    <br>
+
+    @*<label asp-for="WarehouseCode" class="control-label">Warehouse Code</label>
+    <input type="text" name="WarehouseCode" class="form-control" value="" />
+    <br>
+
+    <label asp-for="Price" class="control-label">Price</label><span style="color:red">*</span>
+    <input type="number" step="0.01" name="Price" class="form-control" />
+
+    <label asp-for="PerPound" class="control-label">Per Pound?</label>
+    <input type="checkbox" name="PerPound" id="PerPound" value="true" />
+    <br>
+    <br>
+
+    <label asp-for="SalePrice" class="control-label">Sale Price</label>
+    <input type="number" step="0.01" name="SalePrice" class="form-control" value="@Model.SalePrice" />
+    <br>
+
+    <div class="form-group">
+        <label for="">On Sale?</label>
+        <select class="form-control" name="OnSale" value="">
+            <option value="false" selected>No</option>
+            <option value="true">Yes</option>
+        </select>
+    </div>
+    <br>
+
+    <label asp-for="UnitsPerCase" class="control-label">Units/Case</label>
+    <input type="text" name="UnitsPerCase" class="form-control" value="" />
+    <br>
+
+    <label asp-for="CaseCost" class="control-label">Case Cost</label>
+    <input type="text" name="CaseCost" class="form-control" value="" />
+    <br>
+
+    <div class="form-group">
+        <label asp-for="DeptID">Select a Department</label><span style="color:red">*</span>
+        <select class="form-control" name="DeptID" value="">
+            @foreach (var dept in Department.DeptList)
+            {
+                //if gets rid of 0 No Dept option
+                @if (dept.DeptID > 0)
+                {
+                    <option value="@dept.DeptID"> @dept.DeptID @dept.DeptName</option>
+                }
+            }
+        </select>
+    </div>
+    <br>
+
+    <label asp-for="CurrentInventory" class="control-label">Current Inventory</label>
+    <input type="text" name="CurrentInventory" class="form-control" value="" />
+    <br>*@
+
+    <input type="submit" value="Create Department" class="btn btn-primary" />
+
+    <button type="button" class="btn btn-warning">
+        <a class="text-light" href="/Department/Index/">Cancel</a>
+    </button>
+}

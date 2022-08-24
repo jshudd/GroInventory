@@ -32,7 +32,8 @@ namespace GroInventory
                 return conn;
             });
 
-            services.AddTransient<IProductRepository, ProductRepository>(); 
+            services.AddTransient<IProductRepository, ProductRepository>();
+            services.AddTransient<IDeptRepo, DeptRepo>();
 
             services.AddControllersWithViews();
         }
