@@ -55,7 +55,7 @@ namespace GroInventory
         }
         public void InsertProduct(Product productToInsert)
         {
-            _conn.Execute("INSERT INTO products (UPCPLU, PRODUCTNAME, WAREHOUSECODE, PRICE, SALEPRICE, ONSALE, UNITSPERCASE, CASECOST, DEPTID, CURRENTINVENTORY,PERPOUND) VALUES (@upcplu, @name, @warehousecode, @price, @saleprice, @onsale, @unitspercase, @casecost, @deptid, @currentinventory, @perpound);",
+            _conn.Execute("INSERT INTO products (UPCPLU, PRODUCTNAME, WAREHOUSECODE, PRICE, SALEPRICE, ONSALE, UNITSPERCASE, CASECOST, DEPTID, CURRENTINVENTORY, PERPOUND, SPLIT, SALESPLIT) VALUES (@upcplu, @name, @warehousecode, @price, @saleprice, @onsale, @unitspercase, @casecost, @deptid, @currentinventory, @perpound, @split, @salesplit);",
                 new
                 {
                     upcplu = productToInsert.UPCPLU,
@@ -68,7 +68,9 @@ namespace GroInventory
                     casecost = productToInsert.CaseCost,
                     deptid = productToInsert.DeptID,
                     currentinventory = productToInsert.CurrentInventory,
-                    perpound = productToInsert.PerPound
+                    perpound = productToInsert.PerPound,
+                    split = productToInsert.Split,
+                    salesplit = productToInsert.SaleSplit
                 });
         }
         //Search Bar
@@ -79,20 +81,7 @@ namespace GroInventory
         }
         public void UpdateProduct(Product product)
         {
-            //_conn.Execute("UPDATE products SET ProductName = @name, WarehouseCode = @warehousecode, Price = @price, SalePrice = @saleprice, OnSale = @onsale, UnitsPerCase = @unitspercase, CaseCost = @casecost, DeptID = @deptid, CurrentInventory = @currentinventory WHERE UPC = @upc;",
-            //    new {
-            //        name = product.ProductName,
-            //        warehousecode = product.WarehouseCode,
-            //        price = product.Price,
-            //        saleprice = product.SalePrice,
-            //        onsale = product.OnSale,
-            //        unitspercase = product.UnitsPerCase,
-            //        casecost = product.CaseCost,
-            //        deptid = product.DeptID,
-            //        currentinventory = product.CurrentInventory,
-            //        upc = product.UPC });
-
-            _conn.Execute("UPDATE hudds.products SET ProductName = @name, WarehouseCode = @warehousecode, DeptID = @deptID, Price = @price, SalePrice = @saleprice, OnSale = @onsale, UnitsPerCase = @unitspercase, CaseCost = @casecost, CurrentInventory = @currentinventory, PerPound = @perpound WHERE UPCPLU = @upcplu;",
+            _conn.Execute("UPDATE hudds.products SET ProductName = @name, WarehouseCode = @warehousecode, DeptID = @deptID, Price = @price, SalePrice = @saleprice, OnSale = @onsale, UnitsPerCase = @unitspercase, CaseCost = @casecost, CurrentInventory = @currentinventory, PerPound = @perpound, Split = @split, SaleSplit = @salesplit WHERE UPCPLU = @upcplu;",
                 new
                 {
                     name = product.ProductName,
@@ -105,8 +94,10 @@ namespace GroInventory
                     casecost = product.CaseCost,
                     currentinventory = product.CurrentInventory,
                     upcplu = product.UPCPLU,
-                    perpound = product.PerPound
+                    perpound = product.PerPound,
+                    split = product.Split,
+                    salesplit = product.SaleSplit
                 });
         }
-        }
+    }
 }

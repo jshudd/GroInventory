@@ -14,6 +14,9 @@
     <input type="text" name="WarehouseCode" class="form-control" value="@Model.WarehouseCode" />
     <br>
 
+    <label asp-for="Split" class="control-label">Quantity /</label>
+    <input type="number" step="1" min="1" name="Split" class="form-control" value="@Model.Split" />
+
     <label asp-for="Price" class="control-label">Price</label>
     <input type="number" step="0.01" name="Price" class="form-control" value="@Model.Price" />
 
@@ -30,6 +33,9 @@
 
     <br>
     <br>
+
+    <label asp-for="SaleSplit" class="control-label">Quantity /</label>
+    <input type="number" step="1" min="1" name="SaleSplit" class="form-control" value="@Model.SaleSplit" />
 
     <label asp-for="SalePrice" class="control-label">Sale Price</label>
     <input type="number" step="0.01" name="SalePrice" class="form-control" value="@Model.SalePrice" />

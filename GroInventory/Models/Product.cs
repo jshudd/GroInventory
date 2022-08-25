@@ -22,6 +22,8 @@ namespace GroInventory.Models
         public int LikeCodeID { get; set; }
         public int UnitsPerCase { get; set; }
         public double CurrentInventory { get; set; }
+        public int Split { get; set; }
+        public int SaleSplit { get; set; }
         public IEnumerable<Department> Departments { get; set; }
         public IEnumerable<LikeCode> LikeCodes { get; set; }
         public double CurrentPrice
@@ -35,14 +37,20 @@ namespace GroInventory.Models
         {
             get
             {
-                return (this.Price < 1) ? (this.Price * 100) + "¢" : "$" + this.Price.ToString("N");
+                if (this.Split > 1)
+                    return $"{this.Split} / {((this.Price < 1) ? (this.Price * 100) + "¢" : "$" + this.Price.ToString("N"))}";
+                else
+                    return (this.Price < 1) ? (this.Price * 100) + "¢" : "$" + this.Price.ToString("N");
             }
         }
         public string ConvertedSalePrice
         {
             get
             {
-                return (this.SalePrice < 1) ? (this.SalePrice * 100) + "¢" : "$" + this.SalePrice.ToString("N");
+                if (this.SaleSplit > 1)
+                    return $"{this.SaleSplit} / {((this.SalePrice < 1) ? (this.SalePrice * 100) + "¢" : "$" + this.SalePrice.ToString("N"))}";
+                else
+                    return (this.SalePrice < 1) ? (this.SalePrice * 100) + "¢" : "$" + this.SalePrice.ToString("N");
             }
         }
         public string ConvertedCaseCost
@@ -56,7 +64,25 @@ namespace GroInventory.Models
         {
             get
             {
-                return (this.CurrentPrice < 1) ? (this.CurrentPrice * 100) + "¢" : "$" + this.CurrentPrice.ToString("N");
+                if (this.OnSale)
+                {
+                    if (this.SaleSplit > 1)
+                        return $"{this.SaleSplit} / {((this.CurrentPrice < 1) ? (this.CurrentPrice * 100) + "¢" : "$" + this.CurrentPrice.ToString("N"))}";
+                    else
+                        return (this.CurrentPrice < 1) ? (this.CurrentPrice * 100) + "¢ " + this.PerPound.ToUnitsOrLb() : "$" + this.CurrentPrice.ToString("N") + " " + this.PerPound.ToUnitsOrLb();
+                }
+                else
+                {
+                    if (this.Split > 1)
+                    {
+                        return $"{this.Split} / {((this.CurrentPrice < 1) ? (this.CurrentPrice * 100) + "¢" : "$" + this.CurrentPrice.ToString("N"))}";
+                    }
+                    else
+                    {
+                        return (this.CurrentPrice < 1) ? (this.CurrentPrice * 100) + "¢ " + this.PerPound.ToUnitsOrLb() : "$" + this.CurrentPrice.ToString("N") + " " + this.PerPound.ToUnitsOrLb();
+                    }
+                }
+
             }
         }
         public string ConvertedProfit
@@ -73,11 +99,18 @@ namespace GroInventory.Models
                 return Department.DeptList.ElementAt(DeptID - 1).DeptName;
             }
         }
+        public int CurrentSplit
+        {
+            get
+            {
+                return (this.OnSale) ? this.SaleSplit : this.Split;
+            }
+        }
         public double Profit
         {
             get
             {
-                return ((this.CurrentPrice - (this.CaseCost/this.UnitsPerCase)) / (this.CaseCost/this.UnitsPerCase)) * 100;
+                return (((this.CurrentPrice / this.CurrentSplit) - (this.CaseCost / this.UnitsPerCase)) / (this.CaseCost / this.UnitsPerCase)) * 100;
             }
         }
         public string LikeCodeName
