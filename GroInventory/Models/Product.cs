@@ -66,7 +66,6 @@ namespace GroInventory.Models
                 return (this.Profit < 1 && this.Profit > 0) ? Math.Round((this.Profit * 100), 0) + "¢" : "$" + Math.Round(this.Profit, 2).ToString("N");
             }
         }
-
         public string DeptName
         {
             get
@@ -74,7 +73,6 @@ namespace GroInventory.Models
                 return Department.DeptList.ElementAt(DeptID - 1).DeptName;
             }
         }
-
         public double Profit
         {
             get
@@ -82,7 +80,6 @@ namespace GroInventory.Models
                 return ((this.CurrentPrice - (this.CaseCost/this.UnitsPerCase)) / (this.CaseCost/this.UnitsPerCase)) * 100;
             }
         }
-
         public string LikeCodeName
         {
             get

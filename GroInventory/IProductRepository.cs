@@ -6,16 +6,16 @@ namespace GroInventory
 {
     public interface IProductRepository
     {
-        public IEnumerable<Product> GetAllProducts();
-        public Product GetProduct(int id);
-        public void UpdateProduct(Product product);
-        public void InsertProduct(Product productToInsert);
-        public IEnumerable<Department> GetDepartments();
         public Product AssignDepartmentsList();
+        public void AssignLikeCodeList(Product product);
         public void DeleteProduct(Product product);
+        public IEnumerable<Product> GetAllProducts();
+        public IEnumerable<Department> GetDepartments();
+        public IEnumerable<LikeCode> GetLikeCodes();
+        public Product GetProduct(int id);        
+        public void InsertProduct(Product productToInsert);
         //Search Bar below
         public IEnumerable<Product> SearchProduct(string search);
-        public IEnumerable<LikeCode> GetLikeCodes();
-        public void AssignLikeCodeList(Product product);
+        public void UpdateProduct(Product product);
     }
 }

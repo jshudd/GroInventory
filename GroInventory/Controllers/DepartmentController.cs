@@ -52,14 +52,6 @@ namespace GroInventory.Controllers
             return RedirectToAction("Index");
         }
 
-
-        public IActionResult ViewDepartment(int id)
-        {
-            var dept = repo.GetDept(id);
-
-            return View(dept);
-        }
-
         public IActionResult UpdateDepartment(int id)
         {
             var dept = repo.GetDept(id);
@@ -77,6 +69,13 @@ namespace GroInventory.Controllers
             repo.UpdateDept(dept);
 
             return RedirectToAction("ViewDepartment", new { id = dept.DeptID });
+        }
+
+        public IActionResult ViewDepartment(int id)
+        {
+            var dept = repo.GetDept(id);
+
+            return View(dept);
         }
     }
 }

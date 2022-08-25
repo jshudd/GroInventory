@@ -19,6 +19,13 @@ namespace GroInventory.Controllers
         }
 
         // GET: /<controller>/
+        public IActionResult DeleteProduct(Product product)
+        {
+            repo.DeleteProduct(product);
+
+            return RedirectToAction("Index");
+        }
+
         public IActionResult Index()
         {
             var products = repo.GetAllProducts();
@@ -27,42 +34,6 @@ namespace GroInventory.Controllers
             LikeCode.LikeCodeList = repo.GetLikeCodes();
 
             return View(products);
-        }
-
-        public IActionResult ViewProduct(int id)
-        {
-            var product = repo.GetProduct(id);
-
-            Department.DeptList = repo.GetDepartments();
-            LikeCode.LikeCodeList = repo.GetLikeCodes();
-
-            return View(product);
-        }
-
-        public IActionResult UpdateProduct(int id)
-        {
-            Product prod = repo.GetProduct(id);
-
-            if (prod == null)
-            {
-                return View("ProductNotFound");
-            }
-
-            return View(prod);
-        }
-
-        public IActionResult UpdateProductToDatabase(Product product)
-        {
-            repo.UpdateProduct(product);
-
-            return RedirectToAction("ViewProduct", new { id = product.UPCPLU });
-        }
-
-        public IActionResult DeleteProduct(Product product)
-        {
-            repo.DeleteProduct(product);
-
-            return RedirectToAction("Index");
         }
 
         public IActionResult InsertProduct()
@@ -88,12 +59,34 @@ namespace GroInventory.Controllers
             return View(search);
         }
 
-        //public IActionResult SearchUPC(string searchString)
-        //{
-        //    var search = repo.SearchUPC(searchString);
+        public IActionResult UpdateProduct(int id)
+        {
+            Product prod = repo.GetProduct(id);
 
-        //    return View(search);
-        //}
+            if (prod == null)
+            {
+                return View("ProductNotFound");
+            }
+
+            return View(prod);
+        }
+
+        public IActionResult UpdateProductToDatabase(Product product)
+        {
+            repo.UpdateProduct(product);
+
+            return RedirectToAction("ViewProduct", new { id = product.UPCPLU });
+        }
+
+        public IActionResult ViewProduct(int id)
+        {
+            var product = repo.GetProduct(id);
+
+            Department.DeptList = repo.GetDepartments();
+            LikeCode.LikeCodeList = repo.GetLikeCodes();
+
+            return View(product);
+        }
     }
 }
 
