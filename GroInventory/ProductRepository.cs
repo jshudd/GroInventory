@@ -79,6 +79,7 @@ namespace GroInventory
             return _conn.Query<Product>("SELECT * FROM products WHERE productname LIKE @name OR UPCPLU LIKE @upcplu;",
                 new { name = "%" + search + "%", upcplu = "%" + search + "%" });
         }
+
         public void UpdateProduct(Product product)
         {
             _conn.Execute("UPDATE hudds.products SET ProductName = @name, WarehouseCode = @warehousecode, DeptID = @deptID, Price = @price, SalePrice = @saleprice, OnSale = @onsale, UnitsPerCase = @unitspercase, CaseCost = @casecost, CurrentInventory = @currentinventory, PerPound = @perpound, Split = @split, SaleSplit = @salesplit WHERE UPCPLU = @upcplu;",

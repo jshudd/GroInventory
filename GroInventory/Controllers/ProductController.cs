@@ -46,6 +46,8 @@ namespace GroInventory.Controllers
 
         public IActionResult InsertProductToDatabase(Product productToInsert)
         {
+            //add code here to check if UPC/PLU already taken; if so, redirect back to InsertProduct.cshtml
+
             repo.InsertProduct(productToInsert);
 
             return RedirectToAction("Index");
